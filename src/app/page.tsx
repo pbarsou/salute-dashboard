@@ -1,101 +1,172 @@
-import Image from "next/image";
+"use client"
+
+import ChartOverview from '@/components/chart'
+import { IncreaseIndicatorsGraph } from '@/components/increase-indicators-graph'
+import { Indicators } from '@/components/result-indicators'
+import { ResultsForGroups } from '@/components/results-for-category'
+import TopBar from '@/components/topbar'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { DollarSign } from 'lucide-react'
+import Doctors from '@/components/doctors'
+import TopBarProfileDescription from '@/components/topBar-profile-description'
+import Calendar from '@/components/calendar'
+import DateDropdownMenu from '@/components/date-dropdown-menu'
+import { TopbarMenu } from '@/components/topbar-menu'
+import { TopbarMenuV2 } from '@/components/topbar-menuv2'
+import { useContext, useState } from 'react'
+import { ThemeContext } from '@/context/ThemeContext'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Input } from '@/components/ui/input'
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const [activeTab, setActiveTab] = useState('overview');
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <main className="sm:ml-14 p-2">  
+      <div className="bg-background border border-bg-gray-900 rounded-2xl shadow">
+        <div className={`flex items-center justify-between p-4 ${theme === 'light' ? 'text-dark' : 'text-white'}`}>
+          <div className="flex items-center space-x-4">
+            <TopbarMenu />
+            {/* <h1 className="text-3xl font-semibold ml-2 mt-4">Salute Dashboard</h1> */}
+          </div>
+          
+          <div className="flex items-center space-x-4">
+            <Input type="search" placeholder="Search..." className="w-full max-w-xs" />
+            <Avatar className='w-8 h-8'>
+              <AvatarImage src="/images/profile_photo.png"/>
+              <AvatarFallback>DV</AvatarFallback>
+            </Avatar>
+            <TopBar/ >
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+        <hr className="w-full border-t border-gray-700 mb-4" />
+        
+
+        <div className='pl-4 pr-4 ml-2 mr-2'>
+
+        <h1 className="text-3xl font-semibold ml-2 mt-8">Salute Dashboard</h1>
+          <div className='flex pt-5'>
+            <TopbarMenuV2 />
+          </div>
+
+          {/* <TopBarProfileDescription/> */}
+
+          <div className='flex pt-5'>
+            <DateDropdownMenu />
+          </div>
+
+          <section className='grid grid-cols-2 lg:grid-cols-5 gap-4 pt-6'>
+
+            <Card>
+              <CardHeader>
+                <div className='flex'>
+                  <CardTitle className='text-lg sm:text-xl select-none'>
+                    Exames realizados
+                  </CardTitle>
+                </div>
+
+                <CardDescription>
+                  Nº de exames realizados
+                </CardDescription>
+              </CardHeader>
+
+              <CardContent>
+                <p className='text-base sm:text-lg font-bold'>14</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <div className='flex'>
+                  <CardTitle className='text-lg sm:text-xl select-none'>
+                    Média de periodicidade
+                  </CardTitle>
+                </div>
+
+                <CardDescription>
+                  Periodicidade em que faz exames
+                </CardDescription>
+              </CardHeader>
+
+              <CardContent>
+                <p className='text-base sm:text-lg font-bold'>A cada 3 meses</p>
+              </CardContent>
+            </Card>
+            
+
+            <Card>
+              <CardHeader>
+                <div className='flex'>
+                  <CardTitle className='text-lg sm:text-xl select-none'>
+                    Categorias analisadas
+                  </CardTitle>
+                </div>
+
+                <CardDescription>
+                  Nº de categorias analisadas por exame
+                </CardDescription>
+              </CardHeader>
+
+              <CardContent>
+                <p className='text-base sm:text-lg font-bold'>14</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <div className='flex'>
+                  <CardTitle className='text-lg sm:text-xl select-none'>
+                    Categorias em atenção
+                  </CardTitle>
+                </div>
+
+                <CardDescription>
+                  Nº de categorias com resultado "Alterado"
+                </CardDescription>
+              </CardHeader>
+
+              <CardContent>
+                <p className='text-base sm:text-lg font-bold'>7</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <div className='flex'>
+                  <CardTitle className='text-lg sm:text-xl select-none'>
+                    Ano de maior nº de exames
+                  </CardTitle>
+                </div>
+
+                <CardDescription>
+                  Ano de maior número de exames registrados
+                </CardDescription>
+              </CardHeader>
+
+              <CardContent>
+                <p className='text-base sm:text-lg font-bold'>2021</p>
+              </CardContent>
+            </Card>
+
+            <Indicators /> 
+            <ResultsForGroups />
+            <IncreaseIndicatorsGraph />
+            <div className='col-span-2'>
+              <Doctors />
+            </div>
+
+          </section>
+
+          <section className='mt-4 grid grid-cols-1 md:grid-cols-4 gap-4'>
+            {/* <ChartOverview /> */}
+            {/* <div className='col-span-1 md:col-span-2'>
+              <Calendar />
+            </div> */}
+          </section>
+        </div>
+      </div>  
+    </main>
+  )
 }
