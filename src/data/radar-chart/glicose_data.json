@@ -1,0 +1,74 @@
+[
+    {
+        "dataColeta": "2019-01-09",
+        "Basal": 109.4,
+        "120 minutos": 112.6,
+        "Hemoglobina Glicada": 5.7,
+        "Glicemia": 0,
+        "Glicose P\u00f3s Prandial": 0
+    },
+    {
+        "dataColeta": "2018-03-14",
+        "Hemoglobina Glicada": 5.8,
+        "Glicemia": 104.2,
+        "Basal": 0,
+        "120 minutos": 0,
+        "Glicose P\u00f3s Prandial": 0
+    },
+    {
+        "dataColeta": "2019-02-27",
+        "Glicemia": 106.0,
+        "Basal": 0,
+        "120 minutos": 0,
+        "Glicose P\u00f3s Prandial": 0,
+        "Hemoglobina Glicada": 0
+    },
+    {
+        "dataColeta": "2024-01-26",
+        "Hemoglobina Glicada": 5.7,
+        "Glicemia": 104.9,
+        "Basal": 0,
+        "120 minutos": 0,
+        "Glicose P\u00f3s Prandial": 0
+    },
+    {
+        "dataColeta": "2019-07-12",
+        "Basal": 108.3,
+        "120 minutos": 123.3,
+        "Hemoglobina Glicada": 5.7,
+        "Glicemia": 0,
+        "Glicose P\u00f3s Prandial": 0
+    },
+    {
+        "dataColeta": "2020-10-07",
+        "Glicose P\u00f3s Prandial": 77.0,
+        "Hemoglobina Glicada": 5.8,
+        "Glicemia": 95.8,
+        "Basal": 0,
+        "120 minutos": 0
+    },
+    {
+        "dataColeta": "2020-06-12",
+        "Glicemia": 102.0,
+        "Hemoglobina Glicada": 5.5,
+        "Basal": 0,
+        "120 minutos": 0,
+        "Glicose P\u00f3s Prandial": 0
+    },
+    {
+        "dataColeta": "2021-09-23",
+        "Hemoglobina Glicada": 6.1,
+        "Glicemia": 101.7,
+        "Basal": 0,
+        "120 minutos": 0,
+        "Glicose P\u00f3s Prandial": 0
+    },
+    {
+        "dataColeta": "2021-07-15",
+        "Glicemia": 105.0,
+        "Hemoglobina Glicada": 5.6,
+        "Basal": 0,
+        "120 minutos": 0,
+        "Glicose P\u00f3s Prandial": 0
+    }
+]

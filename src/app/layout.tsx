@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { Sidebar } from "@/components/sidebar";
 import { SidebarProvider } from "@/context/SidebarContext";
 import { ThemeProvider } from "@/context/ThemeContext";
-import TopBar from "@/components/topbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

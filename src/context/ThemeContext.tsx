@@ -17,7 +17,7 @@ export const ThemeContext = createContext<ThemeContextProps>({
 });
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
   useEffect(() => {
     if (theme === 'dark') {

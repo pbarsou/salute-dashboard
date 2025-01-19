@@ -20,11 +20,14 @@ import {
 } from "../ui/tooltip";
 import { useSidebar } from "@/context/SidebarContext";
 import { ThemeContext } from "@/context/ThemeContext";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import AccountMenu from "../account-menu";
+import ThemeMenu from "../theme-menu";
 
 export function Sidebar() {
   const { activeItem, setActiveItem } = useSidebar();
   const { theme } = useContext(ThemeContext);
-  
+
   const handleItemClick = (item: string) => {
     setActiveItem(item);
   };
@@ -34,24 +37,67 @@ export function Sidebar() {
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 border-r bg-background sm:flex flex-col">
         <nav className="flex flex-col items-center gap-4 px-2 py-5">
           <TooltipProvider>
-            {/* <Link
-              href="/"
-              onClick={() => handleItemClick('dashboardAvatar')}
-              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-                activeItem === 'dashboardAvatar' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground transition-colors hover:text-foreground'
-              }`}
-            >
-              <Package className="h-4 w-4" />
-              <span className="sr-only">Dashboard Avatar</span>
-            </Link> */}
-
             <Tooltip>
+            <AccountMenu />
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button className="">
+                    <Package className="text-muted-foreground h-5 w-5" />
+                    <span className="sr-only">Abre/Fecha menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent
+                  side="left"
+                  className="p-4 transition-transform transform-gpu"
+                  style={{ transformOrigin: '0 0' }}
+                >
+                  <h1 className="text-2xl font-semibold mb-4">Profile</h1>
+                  <div className="flex flex-col items-center mb-6">
+                    <Avatar className="w-40 h-40 mb-4">
+                      <AvatarImage src="/images/profile_photo.png" />
+                      <AvatarFallback>DV</AvatarFallback>
+                    </Avatar>
+                    <h1 className="text-3xl mb-2">Danilo Barbosa</h1>
+                    <h2 className="text-lg text-gray-600">Teacher at UFBA</h2>
+                  </div>
+                  <nav className="flex flex-col items-center gap-2 w-full"> {/* Alterado gap-4 para gap-6 e adicionada a classe w-full */}
+                    <Link
+                      href="/"
+                      onClick={() => handleItemClick("home")}
+                      className={`flex items-center gap-4 px-2.5 w-full py-2 rounded justify-center ${
+                        activeItem === "home"
+                          ? "bg-customBlue text-primary-foreground"
+                          : "text-muted-foreground transition-colors hover:text-foreground"
+                      }`}
+                    >
+                      <Home className="h-5 w-5" />
+                      <span>Home</span>
+                    </Link>
+                    <Link
+                      href="/dashboard"
+                      onClick={() => handleItemClick("dashboard")}
+                      className={`flex items-center gap-4 px-2.5 w-full py-2 rounded justify-center ${
+                        activeItem === "dashboard"
+                          ? "bg-customBlue text-primary-foreground"
+                          : "text-muted-foreground transition-colors hover:text-foreground"
+                      }`}
+                    >
+                      <LayoutDashboardIcon className="h-5 w-5" />
+                      <span>Dashboard</span>
+                    </Link>
+                  </nav>
+                </SheetContent>
+              </Sheet>
               <TooltipTrigger asChild>
                 <Link
                   href="/"
-                  onClick={() => handleItemClick('home')}
+                  onClick={() => handleItemClick("home")}
                   className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-                    activeItem === 'home' ? (theme === 'light' ? 'bg-customBlue text-white' : 'bg-white text-background') : 'text-muted-foreground transition-colors hover:text-foreground'
+                    activeItem === "home"
+                      ? theme === "light"
+                        ? "bg-customBlue text-white"
+                        : "bg-white text-background"
+                      : "text-muted-foreground transition-colors hover:text-foreground"
                   }`}
                 >
                   <Home className="h-5 w-5" />
@@ -65,9 +111,13 @@ export function Sidebar() {
               <TooltipTrigger asChild>
                 <Link
                   href="/dashboard"
-                  onClick={() => handleItemClick('dashboard')}
+                  onClick={() => handleItemClick("dashboard")}
                   className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-                    activeItem === 'dashboard' ? (theme === 'light' ? 'bg-customBlue text-white' : 'bg-white text-background') : 'text-muted-foreground transition-colors hover:text-foreground'
+                    activeItem === "dashboard"
+                      ? theme === "light"
+                        ? "bg-customBlue text-white"
+                        : "bg-white text-background"
+                      : "text-muted-foreground transition-colors hover:text-foreground"
                   }`}
                 >
                   <LayoutDashboardIcon className="h-5 w-5" />
@@ -76,34 +126,23 @@ export function Sidebar() {
               </TooltipTrigger>
               <TooltipContent side="right">Dashboard</TooltipContent>
             </Tooltip>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="/line"
-                  onClick={() => handleItemClick('lineChart')}
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-                    activeItem === 'lineChart' ? (theme === 'light' ? 'bg-customBlue text-white' : 'bg-white text-background') : 'text-muted-foreground transition-colors hover:text-foreground'
-                  }`}
-                >
-                  <LineChartIcon className="h-5 w-5" />
-                  <span className="sr-only">Line Chart</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Line Chart</TooltipContent>
-            </Tooltip>
           </TooltipProvider>
         </nav>
 
         <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-5">
           <TooltipProvider>
             <Tooltip>
+              <ThemeMenu/ >
               <TooltipTrigger asChild>
                 <Link
                   href="#"
-                  onClick={() => handleItemClick('logout')}
+                  onClick={() => handleItemClick("logout")}
                   className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
-                    activeItem === 'logout' ? (theme === 'light' ? 'bg-customBlue text-white' : 'bg-white text-background') : 'text-muted-foreground transition-colors hover:text-foreground'
+                    activeItem === "logout"
+                      ? theme === "light"
+                        ? "bg-customBlue text-white"
+                        : "bg-white text-background"
+                      : "text-muted-foreground transition-colors hover:text-foreground"
                   }`}
                 >
                   <LogOut className="h-5 w-5 text-red-500" />
@@ -125,52 +164,51 @@ export function Sidebar() {
               </Button>
             </SheetTrigger>
 
-            <SheetContent side="left" className="sm:max-w-x">
-              <nav className="grid gap-6 text-lg font-medium">
+            <SheetContent
+              side="left"
+              className="sm:max-w-x p-4 transition-transform transform-gpu"
+              style={{ transformOrigin: '0 0' }}
+            >
+              <nav className="flex flex-col gap-6 text-lg font-medium"> {/* Alterado gap-4 para gap-6 */}
                 <Link
                   href="#"
-                  onClick={() => handleItemClick('logo')}
+                  onClick={() => handleItemClick("logo")}
                   className={`flex h-10 w-10 rounded-full text-lg items-center justify-center ${
-                    activeItem === 'logo' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground transition-colors hover:text-foreground'
+                    activeItem === "logo"
+                      ? "bg-customBlue text-primary-foreground"
+                      : "text-muted-foreground transition-colors hover:text-foreground"
                   }`}
                 >
                   <Package className="h-5 w-5" />
                   <span className="sr-only">Logo do Projeto</span>
                 </Link>
                 <Link
-                  href="#"
-                  onClick={() => handleItemClick('home')}
-                  className={`flex items-center gap-4 px-2.5 ${
-                    activeItem === 'home' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground transition-colors hover:text-foreground'
+                  href="/"
+                  onClick={() => handleItemClick("home")}
+                  className={`flex items-center gap-4 px-2.5 w-full py-2 rounded ${
+                    activeItem === "home"
+                      ? "bg-customBlue text-primary-foreground"
+                      : "text-muted-foreground transition-colors hover:text-foreground"
                   }`}
                 >
                   <Home className="h-5 w-5" />
-                  Home
+                  <span>Home</span>
                 </Link>
                 <Link
-                  href="#"
-                  onClick={() => handleItemClick('dashboard')}
-                  className={`flex items-center gap-4 px-2.5 ${
-                    activeItem === 'dashboard' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground transition-colors hover:text-foreground'
+                  href="/dashboard"
+                  onClick={() => handleItemClick("dashboard")}
+                  className={`flex items-center gap-4 px-2.5 w-full py-2 rounded ${
+                    activeItem === "dashboard"
+                      ? "bg-customBlue text-primary-foreground"
+                      : "text-muted-foreground transition-colors hover:text-foreground"
                   }`}
                 >
                   <LayoutDashboardIcon className="h-5 w-5" />
-                  Dashboard
-                </Link>
-                <Link
-                  href="#"
-                  onClick={() => handleItemClick('lineChart')}
-                  className={`flex items-center gap-4 px-2.5 ${
-                    activeItem === 'lineChart' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground transition-colors hover:text-foreground'
-                  }`}
-                >
-                  <LineChartIcon className="h-5 w-5" />
-                  Line Chart
+                  <span>Dashboard</span>
                 </Link>
               </nav>
             </SheetContent>
           </Sheet>
-          <h2>Menu</h2>
         </header>
       </div>
     </div>

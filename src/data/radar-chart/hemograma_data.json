@@ -1,0 +1,74 @@
+[
+    {
+        "dataColeta": "2019-01-09",
+        "Eritr\u00f3citos": 5.48,
+        "Hemoglobina": 15.4,
+        "Hemat\u00f3crito": 45.0,
+        "Leuc\u00f3citos": 5400.0,
+        "Eosin\u00f3filos": 54.0,
+        "Plaquetas": 220000.0
+    },
+    {
+        "dataColeta": "2018-03-14",
+        "Eritr\u00f3citos": 5.71,
+        "Hemoglobina": 15.2,
+        "Hemat\u00f3crito": 46.3,
+        "Leuc\u00f3citos": 6200.0,
+        "Eosin\u00f3filos": 62.0,
+        "Plaquetas": 266000.0
+    },
+    {
+        "dataColeta": "2019-02-27",
+        "Eritr\u00f3citos": 5.4,
+        "Hemoglobina": 15.1,
+        "Hemat\u00f3crito": 45.3,
+        "Leuc\u00f3citos": 5800.0,
+        "Eosin\u00f3filos": 52.0,
+        "Plaquetas": 227000.0
+    },
+    {
+        "dataColeta": "2024-01-26",
+        "Eritr\u00f3citos": 6.0,
+        "Hemoglobina": 16.7,
+        "Hemat\u00f3crito": 51.0,
+        "Leuc\u00f3citos": 6200.0,
+        "Eosin\u00f3filos": 87.0,
+        "Plaquetas": 266000.0
+    },
+    {
+        "dataColeta": "2019-07-12",
+        "Eritr\u00f3citos": 5.7,
+        "Hemoglobina": 15.8,
+        "Hemat\u00f3crito": 47.5,
+        "Leuc\u00f3citos": 6000.0,
+        "Eosin\u00f3filos": 120.0,
+        "Plaquetas": 250000.0
+    },
+    {
+        "dataColeta": "2020-06-12",
+        "Eritr\u00f3citos": 5.7,
+        "Hemoglobina": 15.3,
+        "Hemat\u00f3crito": 46.1,
+        "Leuc\u00f3citos": 5760.0,
+        "Eosin\u00f3filos": 52.0,
+        "Plaquetas": 239000.0
+    },
+    {
+        "dataColeta": "2021-09-23",
+        "Eritr\u00f3citos": 6.2,
+        "Hemoglobina": 16.4,
+        "Hemat\u00f3crito": 49.9,
+        "Leuc\u00f3citos": 8800.0,
+        "Eosin\u00f3filos": 106.0,
+        "Plaquetas": 366000.0
+    },
+    {
+        "dataColeta": "2021-07-15",
+        "Eritr\u00f3citos": 4.98,
+        "Hemoglobina": 14.6,
+        "Hemat\u00f3crito": 41.8,
+        "Leuc\u00f3citos": 6080.0,
+        "Eosin\u00f3filos": 55.0,
+        "Plaquetas": 226000.0
+    }
+]

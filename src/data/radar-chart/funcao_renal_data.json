@@ -1,0 +1,56 @@
+[
+    {
+        "dataColeta": "2018-03-14",
+        "Ur\u00e9ia": 34.4,
+        "Creatinina": 1.09,
+        "Pot\u00e1ssio": 4.3,
+        "pH": 0,
+        "\u00c1cido \u00darico": 0,
+        "null": 0
+    },
+    {
+        "dataColeta": "2019-02-27",
+        "pH": 5.5,
+        "Pot\u00e1ssio": 0,
+        "Creatinina": 0,
+        "\u00c1cido \u00darico": 0,
+        "Ur\u00e9ia": 0,
+        "null": 0
+    },
+    {
+        "dataColeta": "2024-01-26",
+        "Ur\u00e9ia": 33.4,
+        "pH": 6.0,
+        "Pot\u00e1ssio": 0,
+        "Creatinina": 0,
+        "\u00c1cido \u00darico": 0,
+        "null": 0
+    },
+    {
+        "dataColeta": "2020-06-12",
+        "Ur\u00e9ia": 33.0,
+        "Pot\u00e1ssio": 0,
+        "pH": 0,
+        "Creatinina": 0,
+        "\u00c1cido \u00darico": 0,
+        "null": 0
+    },
+    {
+        "dataColeta": "2021-07-15",
+        "Ur\u00e9ia": 37.0,
+        "\u00c1cido \u00darico": 5.7,
+        "Pot\u00e1ssio": 0,
+        "pH": 0,
+        "Creatinina": 0,
+        "null": 0
+    },
+    {
+        "dataColeta": "2019-01-09",
+        "Creatinina": 1.22,
+        "Pot\u00e1ssio": 0,
+        "pH": 0,
+        "\u00c1cido \u00darico": 0,
+        "Ur\u00e9ia": 0,
+        "null": 0
+    }
+]

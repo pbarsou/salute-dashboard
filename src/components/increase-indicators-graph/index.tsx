@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, XAxis, YAxis } from "recharts"
-
+import { useContext, useEffect, useState } from "react";
+import { Bar, BarChart, XAxis, YAxis, LabelList } from "recharts";
 import {
   Card,
   CardContent,
@@ -10,72 +9,96 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
-const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
-]
+} from "@/components/ui/chart";
+import { ThemeContext } from "@/context/ThemeContext";
+import { calculateCategoryVariation } from "@/utils/examsDataUtils";
 
-const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
-  },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
-  },
-} satisfies ChartConfig
+interface CategoryVariation {
+  category: string;
+  averageDifference: number;
+}
+
+interface ChartData {
+  category: string;
+  visitors: number;
+  fill: string;
+}
+
+const generateColor = (index: number) => {
+  const hue = 30; 
+  const saturation = 100 - index * 10;
+  const lightness = 50 + index * 5; 
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+};
 
 export function IncreaseIndicatorsGraph() {
+  const { theme } = useContext(ThemeContext);
+  const [categoriesVariation, setCategoriesVariation] = useState<CategoryVariation[]>([]);
+  const [chartData, setChartData] = useState<ChartData[]>([]);
+  const [chartConfig, setChartConfig] = useState<ChartConfig>({ categories: { label: "Categories" } });
+
+  useEffect(() => {
+    const categoriesVarList = calculateCategoryVariation();
+
+    const topCategoriesVarList = categoriesVarList.slice(0, 10);
+
+    const newChartData = topCategoriesVarList.map((variation, index) => ({
+      category: variation.category,
+      visitors: parseFloat(variation.averageDifference.toFixed(2)), // Formatar os valores com duas casas decimais
+      fill: generateColor(index),
+    }));
+
+    const newChartConfig: ChartConfig = {
+      categories: { label: "Categories" },
+    };
+
+    topCategoriesVarList.forEach((variation, index) => {
+      newChartConfig[variation.category] = {
+        label: variation.category,
+        color: generateColor(index),
+      };
+    });
+
+    setCategoriesVariation(topCategoriesVarList);
+    setChartData(newChartData);
+    setChartConfig(newChartConfig);
+  }, []);
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Crescimento/Decrescimento (%) por categoria</CardTitle>
+    <Card className="h-full pl-2">
+      <CardHeader className="sm:text-2xl">
+        <CardTitle>Variação (%) por exame</CardTitle>
         <CardDescription></CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-7">
         <ChartContainer config={chartConfig}>
           <BarChart
             accessibilityLayer
             data={chartData}
             layout="vertical"
             margin={{
-              left: 0,
+              left: 20,
+              right: 20,
             }}
+            width={600}
+            height={800} 
+            barCategoryGap={20} 
           >
             <YAxis
-              dataKey="browser"
+              dataKey="category"
               type="category"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
+              fontSize={15}
               tickFormatter={(value) =>
-                chartConfig[value as keyof typeof chartConfig]?.label
+                chartConfig[value as keyof typeof chartConfig]?.label || value
               }
             />
             <XAxis dataKey="visitors" type="number" hide />
@@ -83,18 +106,25 @@ export function IncreaseIndicatorsGraph() {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="visitors" layout="vertical" radius={5} />
+            <Bar dataKey="visitors" layout="vertical" radius={5} barSize={40}> 
+              <LabelList
+                dataKey="visitors"
+                position="right"
+                formatter={(value: any) => `${value.toFixed(2)}%`}
+                style={{
+                  fill: theme === "light" ? "black" : "white",
+                  fontSize: "14px",
+                }}
+              />
+            </Bar>
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        {/* <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div> */}
+      <CardFooter className="flex-col items-start gap-2 text-sm mt-6">
         <div className="leading-none text-muted-foreground">
-        Comparação histórica dos resultados dos exames realizados
+          Comparação da variação histórica dos exames realizados
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

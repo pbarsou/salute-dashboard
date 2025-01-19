@@ -1,0 +1,30 @@
+[
+    {
+        "dataColeta": "2018-03-14",
+        "Ferro": 109.0,
+        "C\u00e1lcio Total": 10.0,
+        "Vitamina D": 0,
+        "Vitamina B12": 0
+    },
+    {
+        "dataColeta": "2024-01-26",
+        "Ferro": 109.2,
+        "C\u00e1lcio Total": 9.51,
+        "Vitamina B12": 205.0,
+        "Vitamina D": 17.71
+    },
+    {
+        "dataColeta": "2021-09-23",
+        "Vitamina B12": 337.0,
+        "C\u00e1lcio Total": 0,
+        "Ferro": 0,
+        "Vitamina D": 0
+    },
+    {
+        "dataColeta": "2021-07-15",
+        "Ferro": 80.0,
+        "C\u00e1lcio Total": 9.7,
+        "Vitamina D": 0,
+        "Vitamina B12": 0
+    }
+]

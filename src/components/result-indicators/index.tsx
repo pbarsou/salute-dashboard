@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Label, Pie, PieChart, Sector } from "recharts"
 import { PieSectorDataItem } from "recharts/types/polar/Pie"
+import { countResults } from "@/utils/examsDataUtils"
 
 import {
   Card,
@@ -26,51 +27,44 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { TrendingUp } from "lucide-react"
-const desktopData = [
-  { month: "january", desktop: 186, fill: "var(--color-january)" },
-  { month: "february", desktop: 305, fill: "var(--color-february)" },]
+const sampleData = [
+  { amostra: "normal", quantidade: countResults("Normal"), fill: "var(--color-normal)" },
+  { amostra: "alterado", quantidade: countResults("Alterado"), fill: "var(--color-alterado)" },]
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+  amostras: {
+    label: "Amostras",
   },
-  desktop: {
-    label: "Desktop",
+  normal: {
+    label: "normal",
+    color: "#0593f0",
   },
-  mobile: {
-    label: "Mobile",
-  },
-  january: {
-    label: "January",
-    color: "hsl(var(--chart-1))",
-  },
-  february: {
-    label: "February",
-    color: "hsl(var(--chart-2))",
+  alterado: {
+    label: "alterado",
+    color: "#fa4603",
   }
 } satisfies ChartConfig
 
 export function Indicators() {
   const id = "pie-interactive"
-  const [activeMonth, setActiveMonth] = React.useState(desktopData[0].month)
+  const [activeSample, setActiveSample] = React.useState(sampleData[0].amostra)
 
   const activeIndex = React.useMemo(
-    () => desktopData.findIndex((item) => item.month === activeMonth),
-    [activeMonth]
+    () => sampleData.findIndex((item) => item.amostra === activeSample),
+    [activeSample]
   )
-  const months = React.useMemo(() => desktopData.map((item) => item.month), [])
+  const samples = React.useMemo(() => sampleData.map((item) => item.amostra), [])
 
   return (
 
     <Card data-chart={id} className="flex flex-col">
       <ChartStyle id={id} config={chartConfig} />
-      <CardHeader className="flex-row items-start space-y-0 pb-0">
-        <div className="grid gap-1">
+      <CardHeader className="sm:text-2xl flex-row items-start space-y-0 pb-0">
+        <div className="grid gap-1z">
           <CardTitle>Comparação de Resultados</CardTitle>
           <CardDescription>"Normal" x "Alterado" </CardDescription>
         </div>
-        <Select value={activeMonth} onValueChange={setActiveMonth}>
+        <Select value={activeSample} onValueChange={setActiveSample}>
           <SelectTrigger
             className="ml-auto h-7 w-[130px] rounded-lg pl-2.5"
             aria-label="Select a value"
@@ -78,7 +72,7 @@ export function Indicators() {
             <SelectValue placeholder="Select month" />
           </SelectTrigger>
           <SelectContent align="end" className="rounded-xl">
-            {months.map((key) => {
+            {samples.map((key) => {
               const config = chartConfig[key as keyof typeof chartConfig]
 
               if (!config) {
@@ -118,9 +112,9 @@ export function Indicators() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Pie
-              data={desktopData}
-              dataKey="desktop"
-              nameKey="month"
+              data={sampleData}
+              dataKey="quantidade"
+              nameKey="amostra"
               innerRadius={60}
               strokeWidth={5}
               activeIndex={activeIndex}
@@ -153,7 +147,7 @@ export function Indicators() {
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold"
                         >
-                          {desktopData[activeIndex].desktop.toLocaleString()}
+                          {sampleData[activeIndex].quantidade.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
@@ -172,9 +166,6 @@ export function Indicators() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
-        {/* <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div> */}
         <div className="leading-none text-muted-foreground">
           Comparação histórica dos resultados dos exames realizados
         </div>

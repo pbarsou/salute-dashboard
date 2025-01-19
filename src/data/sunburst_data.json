@@ -1,0 +1,436 @@
+{
+    "name": "Exames",
+    "color": "hsl(107, 70%, 50%)",
+    "children": [
+        {
+            "name": "Glicose",
+            "color": "hsl(241, 70%, 50%)",
+            "children": [
+                {
+                    "name": "Glicose-Glicemia",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Glicose-Glicemia-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 1
+                        },
+                        {
+                            "name": "Glicose-Glicemia-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 6
+                        }
+                    ]
+                },
+                {
+                    "name": "Glicose-Basal",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Glicose-Basal-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 0
+                        },
+                        {
+                            "name": "Glicose-Basal-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 2
+                        }
+                    ]
+                },
+                {
+                    "name": "Glicose-120 minutos",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Glicose-120 minutos-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 2
+                        },
+                        {
+                            "name": "Glicose-120 minutos-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Glicose-Hemoglobina Glicada",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Glicose-Hemoglobina Glicada-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 2
+                        },
+                        {
+                            "name": "Glicose-Hemoglobina Glicada-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 6
+                        }
+                    ]
+                },
+                {
+                    "name": "Glicose-Glicose P\u00f3s Prandial",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Glicose-Glicose P\u00f3s Prandial-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 1
+                        },
+                        {
+                            "name": "Glicose-Glicose P\u00f3s Prandial-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Hemograma",
+            "color": "hsl(241, 70%, 50%)",
+            "children": [
+                {
+                    "name": "Hemograma-Eritr\u00f3citos",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Hemograma-Eritr\u00f3citos-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 7
+                        },
+                        {
+                            "name": "Hemograma-Eritr\u00f3citos-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 1
+                        }
+                    ]
+                },
+                {
+                    "name": "Hemograma-Hemoglobina",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Hemograma-Hemoglobina-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 8
+                        },
+                        {
+                            "name": "Hemograma-Hemoglobina-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Hemograma-Hemat\u00f3crito",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Hemograma-Hemat\u00f3crito-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 7
+                        },
+                        {
+                            "name": "Hemograma-Hemat\u00f3crito-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 1
+                        }
+                    ]
+                },
+                {
+                    "name": "Hemograma-Leuc\u00f3citos",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Hemograma-Leuc\u00f3citos-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 8
+                        },
+                        {
+                            "name": "Hemograma-Leuc\u00f3citos-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Hemograma-Eosin\u00f3filos",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Hemograma-Eosin\u00f3filos-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 8
+                        },
+                        {
+                            "name": "Hemograma-Eosin\u00f3filos-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Hemograma-Plaquetas",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Hemograma-Plaquetas-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 8
+                        },
+                        {
+                            "name": "Hemograma-Plaquetas-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Lipidograma",
+            "color": "hsl(241, 70%, 50%)",
+            "children": [
+                {
+                    "name": "Lipidograma-Colesterol Total",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Lipidograma-Colesterol Total-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 1
+                        },
+                        {
+                            "name": "Lipidograma-Colesterol Total-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 8
+                        }
+                    ]
+                },
+                {
+                    "name": "Lipidograma-Triglicer\u00eddeos",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Lipidograma-Triglicer\u00eddeos-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 7
+                        },
+                        {
+                            "name": "Lipidograma-Triglicer\u00eddeos-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 2
+                        }
+                    ]
+                },
+                {
+                    "name": "Lipidograma-HDL Colesterol",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Lipidograma-HDL Colesterol-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 9
+                        },
+                        {
+                            "name": "Lipidograma-HDL Colesterol-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Lipidograma-LDL Colesterol",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Lipidograma-LDL Colesterol-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 0
+                        },
+                        {
+                            "name": "Lipidograma-LDL Colesterol-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Vitaminas e Minerais",
+            "color": "hsl(241, 70%, 50%)",
+            "children": [
+                {
+                    "name": "Vitaminas e Minerais-Ferro",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Vitaminas e Minerais-Ferro-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 3
+                        },
+                        {
+                            "name": "Vitaminas e Minerais-Ferro-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Vitaminas e Minerais-C\u00e1lcio Total",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Vitaminas e Minerais-C\u00e1lcio Total-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 3
+                        },
+                        {
+                            "name": "Vitaminas e Minerais-C\u00e1lcio Total-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Vitaminas e Minerais-Vitamina B12",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Vitaminas e Minerais-Vitamina B12-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 2
+                        },
+                        {
+                            "name": "Vitaminas e Minerais-Vitamina B12-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Funcao Renal",
+            "color": "hsl(241, 70%, 50%)",
+            "children": [
+                {
+                    "name": "Funcao Renal-Ur\u00e9ia",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Funcao Renal-Ur\u00e9ia-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 4
+                        },
+                        {
+                            "name": "Funcao Renal-Ur\u00e9ia-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Funcao Renal-Creatinina",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Funcao Renal-Creatinina-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 2
+                        },
+                        {
+                            "name": "Funcao Renal-Creatinina-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Funcao Renal-Pot\u00e1ssio",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Funcao Renal-Pot\u00e1ssio-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 1
+                        },
+                        {
+                            "name": "Funcao Renal-Pot\u00e1ssio-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Funcao Renal-pH",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Funcao Renal-pH-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 2
+                        },
+                        {
+                            "name": "Funcao Renal-pH-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Funcao Renal-Cor",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Funcao Renal-Cor-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 2
+                        },
+                        {
+                            "name": "Funcao Renal-Cor-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Funcao Renal-Prote\u00edna",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Funcao Renal-Prote\u00edna-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 2
+                        },
+                        {
+                            "name": "Funcao Renal-Prote\u00edna-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Funcao Renal-Glicose",
+                    "color": "hsl(152, 70%, 50%)",
+                    "children": [
+                        {
+                            "name": "Funcao Renal-Glicose-Normal",
+                            "color": "hsl(187, 70%, 50%)",
+                            "loc": 2
+                        },
+                        {
+                            "name": "Funcao Renal-Glicose-Alterado",
+                            "color": "hsl(312, 70%, 50%)",
+                            "loc": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

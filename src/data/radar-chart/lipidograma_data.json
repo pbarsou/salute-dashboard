@@ -1,0 +1,65 @@
+[
+    {
+        "dataColeta": "2019-01-09",
+        "Colesterol Total": 204.6,
+        "Triglicer\u00eddeos": 92.1,
+        "HDL Colesterol": 54.0,
+        "LDL Colesterol": 132.2
+    },
+    {
+        "dataColeta": "2018-03-14",
+        "Colesterol Total": 208.2,
+        "Triglicer\u00eddeos": 109.6,
+        "HDL Colesterol": 49.0,
+        "LDL Colesterol": 137.3
+    },
+    {
+        "dataColeta": "2019-02-27",
+        "Colesterol Total": 154.0,
+        "Triglicer\u00eddeos": 85.0,
+        "HDL Colesterol": 46.0,
+        "LDL Colesterol": 90.0
+    },
+    {
+        "dataColeta": "2024-01-26",
+        "Colesterol Total": 217.4,
+        "Triglicer\u00eddeos": 84.9,
+        "HDL Colesterol": 52.0,
+        "LDL Colesterol": 146.5
+    },
+    {
+        "dataColeta": "2019-07-12",
+        "Colesterol Total": 245.7,
+        "Triglicer\u00eddeos": 153.3,
+        "HDL Colesterol": 53.0,
+        "LDL Colesterol": 162.0
+    },
+    {
+        "dataColeta": "2020-10-07",
+        "Colesterol Total": 210.6,
+        "Triglicer\u00eddeos": 129.1,
+        "HDL Colesterol": 56.0,
+        "LDL Colesterol": 130.2
+    },
+    {
+        "dataColeta": "2020-06-12",
+        "Colesterol Total": 224.0,
+        "Triglicer\u00eddeos": 80.0,
+        "HDL Colesterol": 59.0,
+        "LDL Colesterol": 146.8
+    },
+    {
+        "dataColeta": "2021-09-23",
+        "Colesterol Total": 229.2,
+        "Triglicer\u00eddeos": 255.5,
+        "HDL Colesterol": 47.0,
+        "LDL Colesterol": 142.9
+    },
+    {
+        "dataColeta": "2021-07-15",
+        "Colesterol Total": 218.0,
+        "Triglicer\u00eddeos": 142.0,
+        "HDL Colesterol": 55.0,
+        "LDL Colesterol": 136.0
+    }
+]
