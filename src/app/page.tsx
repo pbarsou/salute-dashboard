@@ -138,11 +138,11 @@ export default function Dashboard() {
               </CardContent>
             </Card>
 
-            <Indicators /> 
+            <Indicators groupName=''/> 
             <ResultsForGroups />
 
             <div className='col-span-2'>
-              <IncreaseIndicatorsGraph />
+              <IncreaseIndicatorsGraph groupName='' />
             </div>
             <Doctors />
 

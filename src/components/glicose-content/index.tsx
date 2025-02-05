@@ -9,9 +9,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CategoryLineChart }  from "../category-line-chart";
+import { CategoryLineChart } from "../category-line-chart";
 import { GlicoseRadarChart } from "../glicose-radar-chart";
 import { getExamData } from "@/utils/examsDataUtils";
+import TreemapGroup from "../treemap";
+import { Indicators } from "../result-indicators";
+import { IncreaseIndicatorsGraph } from "../increase-indicators-graph";
 
 interface GlicoseContentProps {
   selectedDate: string | null;
@@ -27,8 +30,10 @@ const GlicoseContent: React.FC<GlicoseContentProps> = ({ selectedDate }) => {
   const [glicoseData, setGlicoseData] = useState<ExamData | null>(null);
   const [basalData, setBasalData] = useState<ExamData | null>(null);
   const [minutos120Data, setMinutos120Data] = useState<ExamData | null>(null);
-  const [hemoglobinaGlicadaData, setHemoglobinaGlicadaData] = useState<ExamData | null>(null);
-  const [glicosePosPrandialData, setGlicosePosPrandialData] = useState<ExamData | null>(null);
+  const [hemoglobinaGlicadaData, setHemoglobinaGlicadaData] =
+    useState<ExamData | null>(null);
+  const [glicosePosPrandialData, setGlicosePosPrandialData] =
+    useState<ExamData | null>(null);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -36,8 +41,12 @@ const GlicoseContent: React.FC<GlicoseContentProps> = ({ selectedDate }) => {
     setGlicoseData(getExamData("Glicose", "Glicemia", selectedDate));
     setBasalData(getExamData("Glicose", "Basal", selectedDate));
     setMinutos120Data(getExamData("Glicose", "120 minutos", selectedDate));
-    setHemoglobinaGlicadaData(getExamData("Glicose", "Hemoglobina Glicada", selectedDate));
-    setGlicosePosPrandialData(getExamData("Glicose", "Glicose Pós Prandial", selectedDate));
+    setHemoglobinaGlicadaData(
+      getExamData("Glicose", "Hemoglobina Glicada", selectedDate)
+    );
+    setGlicosePosPrandialData(
+      getExamData("Glicose", "Glicose Pós Prandial", selectedDate)
+    );
   }, [selectedDate]);
 
   return (
@@ -54,7 +63,9 @@ const GlicoseContent: React.FC<GlicoseContentProps> = ({ selectedDate }) => {
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {glicoseData ? `${glicoseData.valor} ${glicoseData.medida}` : "N/A"}
+              {glicoseData
+                ? `${glicoseData.valor} ${glicoseData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -92,7 +103,9 @@ const GlicoseContent: React.FC<GlicoseContentProps> = ({ selectedDate }) => {
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {minutos120Data ? `${minutos120Data.valor} ${minutos120Data.medida}` : "N/A"}
+              {minutos120Data
+                ? `${minutos120Data.valor} ${minutos120Data.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -111,11 +124,17 @@ const GlicoseContent: React.FC<GlicoseContentProps> = ({ selectedDate }) => {
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {hemoglobinaGlicadaData ? `${hemoglobinaGlicadaData.valor} ${hemoglobinaGlicadaData.medida}` : "N/A"}
+              {hemoglobinaGlicadaData
+                ? `${hemoglobinaGlicadaData.valor} ${hemoglobinaGlicadaData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
-            <p>{hemoglobinaGlicadaData ? hemoglobinaGlicadaData.resultado : "N/A"}</p>
+            <p>
+              {hemoglobinaGlicadaData
+                ? hemoglobinaGlicadaData.resultado
+                : "N/A"}
+            </p>
           </CardFooter>
         </Card>
 
@@ -130,19 +149,33 @@ const GlicoseContent: React.FC<GlicoseContentProps> = ({ selectedDate }) => {
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {glicosePosPrandialData ? `${glicosePosPrandialData.valor} ${glicosePosPrandialData.medida}` : "N/A"}
+              {glicosePosPrandialData
+                ? `${glicosePosPrandialData.valor} ${glicosePosPrandialData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
-            <p>{glicosePosPrandialData ? glicosePosPrandialData.resultado : "N/A"}</p>
+            <p>
+              {glicosePosPrandialData
+                ? glicosePosPrandialData.resultado
+                : "N/A"}
+            </p>
           </CardFooter>
         </Card>
       </section>
 
       {isClient && selectedDate === null && (
-        <section className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <section className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
           <CategoryLineChart chart="Glicose" />
           <GlicoseRadarChart />
+        </section>
+      )}
+
+      {isClient && selectedDate === null && (
+        <section className="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <Indicators groupName="Glicose" />
+          <IncreaseIndicatorsGraph groupName="Glicose" />
+          <TreemapGroup groupName={"Glicose"} />
         </section>
       )}
     </>

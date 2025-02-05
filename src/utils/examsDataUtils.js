@@ -21,6 +21,16 @@ export function countResults(resultado) {
     return exams.filter(exam => exam.resultado == resultado).length;
 }
 
+// Função para contar a quantidade de objetos com `resultado` diferente de `null` e por grupo
+export function countResultsByGroup(group, resultado) {
+  if(group) {
+    const filteredExams = exams.filter(exam => exam.group === group && exam.resultado === resultado);
+    return filteredExams.length;
+  } else {
+    return exams.filter(exam => exam.resultado == resultado).length;
+  }
+}
+
 export function countNonNullResults() {
     return exams.filter(exam => exam.resultado !== null).length;
   }
@@ -64,7 +74,6 @@ export function getUniqueSortedDatesByCategory(category) {
 export function getDataByCategory(category) {
   const filteredExams = exams.filter(exam => exam.categoria === category);
 
-  // Ordenar os exames pela data de coleta (mais antiga para mais recente)
   const sortedExams = filteredExams.sort((a, b) => new Date(a.dataColeta) - new Date(b.dataColeta));
 
   const data = sortedExams.map(exam => ({
@@ -95,7 +104,6 @@ export function getUniqueSortedCategoriesByGroup(group) {
 
 // Função para calcular a média de tempo entre consultas em meses
 export function calculateAverageTimeBetweenConsultations() {
-  // Extrair datas únicas de coleta
   const uniqueDates = [...new Set(exams.map(exam => exam.dataColeta))]
     .map(date => new Date(date))
     .sort((a, b) => a - b);
@@ -103,7 +111,6 @@ export function calculateAverageTimeBetweenConsultations() {
   let totalMonths = 0;
   let count = 0;
 
-  // Calcular a diferença de tempo entre as consultas
   for (let i = 1; i < uniqueDates.length; i++) {
     const date1 = uniqueDates[i - 1];
     const date2 = uniqueDates[i];
@@ -113,23 +120,19 @@ export function calculateAverageTimeBetweenConsultations() {
     console.log(`Date1: ${date1.toLocaleDateString()}, Date2: ${date2.toLocaleDateString()}, MonthDifference: ${monthDifference}`);
   }
 
-  // Calcular a média das diferenças de tempo
   const averageMonths = count === 0 ? 0 : totalMonths / count;
   return averageMonths;
 }
 
 // Função para identificar o ano com o maior número de coletas
 export function getYearWithMostCollections() {
-    // Extrair anos das datas de coleta
     const years = exams.map(exam => new Date(exam.dataColeta).getFullYear());
   
-    // Contar a frequência de cada ano
     const yearCounts = years.reduce((acc, year) => {
       acc[year] = (acc[year] || 0) + 1;
       return acc;
     }, {});
   
-    // Identificar o ano com o maior número de coletas
     const maxYear = Object.keys(yearCounts).reduce((a, b) => yearCounts[a] > yearCounts[b] ? a : b);
   
     return maxYear;
@@ -137,13 +140,11 @@ export function getYearWithMostCollections() {
 
   // Função para retornar o exame mais recente
   export function getMostRecentExam() {
-    // Ordenar os exames por dataColeta em ordem decrescente
     const sortedExams = exams.sort((a, b) => new Date(b.dataColeta) - new Date(a.dataColeta));
   
-    // Selecionar o exame mais recente
     const mostRecentExam = sortedExams[0];
   
-    // Retornar apenas as informações solicitadas
+
     return {
       nomeMedico: mostRecentExam.nomeMedico,
       convenio: mostRecentExam.convenio,
@@ -158,10 +159,8 @@ export function getYearWithMostCollections() {
 
   // Função para retornar os 5 exames com dataColeta mais recentes e diferentes
   export function getFiveMostRecentUniqueDateExams() {
-    // Ordenar os exames por dataColeta em ordem decrescente
     const sortedExams = exams.sort((a, b) => new Date(b.dataColeta) - new Date(a.dataColeta));
-  
-    // Usar um Set para garantir datas únicas
+
     const uniqueDates = new Set();
     const recentExams = [];
   
@@ -177,7 +176,6 @@ export function getYearWithMostCollections() {
 
     console.log(recentExams)
   
-    // Mapear os exames para retornar apenas as informações solicitadas
     return recentExams.map(exam => ({
       nomeMedico: exam.nomeMedico,
       convenio: exam.convenio,
@@ -188,61 +186,62 @@ export function getYearWithMostCollections() {
   }
   
 // Função para calcular a média em porcentagem das diferenças entre exames para cada categoria
-export function calculateCategoryVariation() {
-    // Agrupar os exames por categoria
-    const examsByCategory = exams.reduce((acc, exam) => {
-      if (!acc[exam.categoria]) {
-        acc[exam.categoria] = [];
-      }
-      acc[exam.categoria].push(exam);
-      return acc;
-    }, {});
-  
-    // Calcular a diferença em porcentagem entre os valores dos exames consecutivos para cada categoria
-    const categoryVariations = Object.keys(examsByCategory).map(category => {
-      const categoryExams = examsByCategory[category].sort((a, b) => new Date(a.dataColeta) - new Date(b.dataColeta));
-      const differences = [];
-  
-      for (let i = 1; i < categoryExams.length; i++) {
-        const previousValue = categoryExams[i - 1].valor;
-        const currentValue = categoryExams[i].valor;
-        const difference = ((currentValue - previousValue) / previousValue) * 100;
+export function calculateCategoryVariation(group) {
+  const filteredExams = group ? exams.filter(exam => exam.group === group) : exams;
+
+  const filteredExamsByCategory = group === "Funcao Renal"
+    ? filteredExams.filter(exam => exam.categoria !== "Proteína" && exam.categoria !== "Glicose" && exam.categoria !== "Cor")
+    : filteredExams;
+
+  const examsByCategory = filteredExamsByCategory.reduce((acc, exam) => {
+    if (!acc[exam.categoria]) {
+      acc[exam.categoria] = [];
+    }
+    acc[exam.categoria].push(exam);
+    return acc;
+  }, {});
+
+  const categoryVariations = Object.keys(examsByCategory).map(category => {
+    const categoryExams = examsByCategory[category].sort((a, b) => new Date(a.dataColeta) - new Date(b.dataColeta));
+    const differences = [];
+
+    for (let i = 1; i < categoryExams.length; i++) {
+      const previousValue = parseFloat(categoryExams[i - 1].valor);
+      const currentValue = parseFloat(categoryExams[i].valor);
+      const difference = ((currentValue - previousValue) / previousValue) * 100;
+      if (!isNaN(difference)) {
         differences.push(difference);
       }
-  
-      // Calcular a média das diferenças em porcentagem
-      const averageDifference = differences.reduce((sum, diff) => sum + diff, 0) / differences.length;
-  
-      return {
-        category,
-        averageDifference: Math.abs(averageDifference), // Usando o valor absoluto para evitar diferenças negativas
-      };
-    });
-  
-    // Ordenar as categorias pelo valor da média das diferenças em porcentagem em ordem decrescente
-    categoryVariations.sort((a, b) => b.averageDifference - a.averageDifference);
+    }
 
-    console.log(categoryVariations)
-  
-    return categoryVariations;
-  }
+    const averageDifference = differences.reduce((sum, diff) => sum + diff, 0) / differences.length;
+
+    return {
+      category,
+      averageDifference: Math.abs(averageDifference),
+    };
+  });
+
+  categoryVariations.sort((a, b) => b.averageDifference - a.averageDifference);
+
+  return categoryVariations;
+}
 
 // Função para buscar exames com base em group, categoria e dataColeta (opcional)
 export function getExamData(group, categoria, dataColeta) {
-  // Filtrar os exames pelo group e categoria
   let filteredExams = exams.filter(exam => exam.group === group && exam.categoria === categoria);
 
   if (dataColeta) {
-    // Se dataColeta estiver preenchida, filtrar pelo dataColeta
     filteredExams = filteredExams.filter(exam => exam.dataColeta === dataColeta);
   } else {
-    // Se dataColeta for null, ordenar os exames pela dataColeta em ordem decrescente e pegar o mais recente
     filteredExams.sort((a, b) => new Date(b.dataColeta) - new Date(a.dataColeta));
   }
 
-  // Pegar o exame mais recente ou o exame com a dataColeta especificada
   const exam = filteredExams[0];
 
-  // Retornar o valor e a medida do exame, garantindo que valor seja um número e medida seja uma string
   return exam ? { valor: Number(exam.valor) || String(exam.valor), medida: exam.medida || '' , resultado: exam.resultado} : null;
 }
+
+export function filterExams (testName, categories) {
+  return exams.filter(exam => exam.teste === testName && categories.includes(exam.categoria));
+};

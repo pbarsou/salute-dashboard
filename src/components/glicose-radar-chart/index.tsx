@@ -32,7 +32,7 @@ export function GlicoseRadarChart() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="sm:text-2xl ">
-          <CardTitle>Comparação de resultados</CardTitle>
+          <CardTitle>Comparação entre Coletas</CardTitle>
           <CardDescription>
             Glicose
           </CardDescription>

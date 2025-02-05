@@ -1,11 +1,22 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { CategoryLineChart } from "../category-line-chart";
 import { getExamData } from "@/utils/examsDataUtils";
 import { FuncaoRenalRadarChart } from "../funcao-renal-radar-chart ";
 import MyResponsiveWaffle from "../waffle-chart";
+import { BubbleChart } from "../bubble-chart";
+import { Indicators } from "../result-indicators";
+import { IncreaseIndicatorsGraph } from "../increase-indicators-graph";
+import TreemapGroup from "../treemap";
 
 interface FuncaoRenalContentProps {
   selectedDate: string | null;
@@ -17,7 +28,9 @@ interface ExamData {
   resultado: string;
 }
 
-const FuncaoRenalContent: React.FC<FuncaoRenalContentProps> = ({ selectedDate }) => {
+const FuncaoRenalContent: React.FC<FuncaoRenalContentProps> = ({
+  selectedDate,
+}) => {
   const [ureiaData, setUreiaData] = useState<ExamData | null>(null);
   const [creatininaData, setCreatininaData] = useState<ExamData | null>(null);
   const [potassioData, setPotassioData] = useState<ExamData | null>(null);
@@ -40,8 +53,8 @@ const FuncaoRenalContent: React.FC<FuncaoRenalContentProps> = ({ selectedDate })
     setDensidadeData(getExamData("Funcao Renal", "Densidade", selectedDate));
     setProteinaData(getExamData("Funcao Renal", "Proteína", selectedDate));
     setGlicoseData(getExamData("Funcao Renal", "Glicose", selectedDate));
-    console.log(corData)
-    console.log(proteinaData)
+    console.log(corData);
+    console.log(proteinaData);
   }, [selectedDate]);
 
   return (
@@ -77,7 +90,9 @@ const FuncaoRenalContent: React.FC<FuncaoRenalContentProps> = ({ selectedDate })
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {creatininaData ? `${creatininaData.valor} ${creatininaData.medida}` : "N/A"}
+              {creatininaData
+                ? `${creatininaData.valor} ${creatininaData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -96,7 +111,9 @@ const FuncaoRenalContent: React.FC<FuncaoRenalContentProps> = ({ selectedDate })
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {potassioData ? `${potassioData.valor} ${potassioData.medida}` : "N/A"}
+              {potassioData
+                ? `${potassioData.valor} ${potassioData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -115,7 +132,9 @@ const FuncaoRenalContent: React.FC<FuncaoRenalContentProps> = ({ selectedDate })
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {acidoUricoData ? `${acidoUricoData.valor} ${acidoUricoData.medida}` : "N/A"}
+              {acidoUricoData
+                ? `${acidoUricoData.valor} ${acidoUricoData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -176,7 +195,9 @@ const FuncaoRenalContent: React.FC<FuncaoRenalContentProps> = ({ selectedDate })
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {densidadeData ? `${densidadeData.valor} ${densidadeData.medida}` : "N/A"}
+              {densidadeData
+                ? `${densidadeData.valor} ${densidadeData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -225,15 +246,26 @@ const FuncaoRenalContent: React.FC<FuncaoRenalContentProps> = ({ selectedDate })
 
       {isClient && selectedDate === null && (
         <section className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <CategoryLineChart chart="Funcao Renal" />
-          <FuncaoRenalRadarChart />
-        </section>
+        <CategoryLineChart chart="Funcao Renal" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <BubbleChart />
+          <TreemapGroup groupName={"Funcao Renal"} />
+        </div>
+      </section>
+      
       )}
 
-      <MyResponsiveWaffle />
+      {isClient && selectedDate === null && (
+        <section className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+          
+          <FuncaoRenalRadarChart />
+          {/* <Indicators groupName="Funcao Renal" /> */}
+          <IncreaseIndicatorsGraph groupName="Funcao Renal" />
+         
+        </section>
+      )}
     </>
   );
 };
 
 export default FuncaoRenalContent;
-

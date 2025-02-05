@@ -1,10 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { CategoryLineChart } from "../category-line-chart";
 import { getExamData } from "@/utils/examsDataUtils";
 import { LipidogramaRadarChart } from "../lipidograma-radar-chart ";
+import { Indicators } from "../result-indicators";
+import { IncreaseIndicatorsGraph } from "../increase-indicators-graph";
+import TreemapGroup from "../treemap";
 
 interface LipidogramaContentProps {
   selectedDate: string | null;
@@ -16,19 +26,36 @@ interface ExamData {
   resultado: string;
 }
 
-const LipidogramaContent: React.FC<LipidogramaContentProps> = ({ selectedDate }) => {
-  const [colesterolTotalData, setColesterolTotalData] = useState<ExamData | null>(null);
-  const [triglicerideosData, setTriglicerideosData] = useState<ExamData | null>(null);
-  const [hdlColesterolData, setHdlColesterolData] = useState<ExamData | null>(null);
-  const [ldlColesterolData, setLdlColesterolData] = useState<ExamData | null>(null);
+const LipidogramaContent: React.FC<LipidogramaContentProps> = ({
+  selectedDate,
+}) => {
+  const [colesterolTotalData, setColesterolTotalData] =
+    useState<ExamData | null>(null);
+  const [triglicerideosData, setTriglicerideosData] = useState<ExamData | null>(
+    null
+  );
+  const [hdlColesterolData, setHdlColesterolData] = useState<ExamData | null>(
+    null
+  );
+  const [ldlColesterolData, setLdlColesterolData] = useState<ExamData | null>(
+    null
+  );
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
-    setColesterolTotalData(getExamData("Lipidograma", "Colesterol Total", selectedDate));
-    setTriglicerideosData(getExamData("Lipidograma", "Triglicerídeos", selectedDate));
-    setHdlColesterolData(getExamData("Lipidograma", "HDL Colesterol", selectedDate));
-    setLdlColesterolData(getExamData("Lipidograma", "LDL Colesterol", selectedDate));
+    setColesterolTotalData(
+      getExamData("Lipidograma", "Colesterol Total", selectedDate)
+    );
+    setTriglicerideosData(
+      getExamData("Lipidograma", "Triglicerídeos", selectedDate)
+    );
+    setHdlColesterolData(
+      getExamData("Lipidograma", "HDL Colesterol", selectedDate)
+    );
+    setLdlColesterolData(
+      getExamData("Lipidograma", "LDL Colesterol", selectedDate)
+    );
   }, [selectedDate]);
 
   return (
@@ -45,7 +72,9 @@ const LipidogramaContent: React.FC<LipidogramaContentProps> = ({ selectedDate })
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {colesterolTotalData ? `${colesterolTotalData.valor} ${colesterolTotalData.medida}` : "N/A"}
+              {colesterolTotalData
+                ? `${colesterolTotalData.valor} ${colesterolTotalData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -64,7 +93,9 @@ const LipidogramaContent: React.FC<LipidogramaContentProps> = ({ selectedDate })
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {triglicerideosData ? `${triglicerideosData.valor} ${triglicerideosData.medida}` : "N/A"}
+              {triglicerideosData
+                ? `${triglicerideosData.valor} ${triglicerideosData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -83,7 +114,9 @@ const LipidogramaContent: React.FC<LipidogramaContentProps> = ({ selectedDate })
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {hdlColesterolData ? `${hdlColesterolData.valor} ${hdlColesterolData.medida}` : "N/A"}
+              {hdlColesterolData
+                ? `${hdlColesterolData.valor} ${hdlColesterolData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -102,7 +135,9 @@ const LipidogramaContent: React.FC<LipidogramaContentProps> = ({ selectedDate })
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {ldlColesterolData ? `${ldlColesterolData.valor} ${ldlColesterolData.medida}` : "N/A"}
+              {ldlColesterolData
+                ? `${ldlColesterolData.valor} ${ldlColesterolData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -115,6 +150,14 @@ const LipidogramaContent: React.FC<LipidogramaContentProps> = ({ selectedDate })
         <section className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
           <CategoryLineChart chart="Lipidograma" />
           <LipidogramaRadarChart />
+        </section>
+      )}
+
+      {isClient && selectedDate === null && (
+        <section className="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <Indicators groupName="Lipidograma" />
+          <IncreaseIndicatorsGraph groupName="Lipidograma" />
+          <TreemapGroup groupName={"Lipidograma"} />
         </section>
       )}
     </>

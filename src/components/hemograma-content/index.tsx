@@ -1,10 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { getExamData } from "@/utils/examsDataUtils";
 import { HemogramaRadarChart } from "../hemograma-radar-chart ";
 import { CategoryLineChart } from "../category-line-chart";
+import { Indicators } from "../result-indicators";
+import { IncreaseIndicatorsGraph } from "../increase-indicators-graph";
+import TreemapGroup from "../treemap";
 
 interface HemogramaContentProps {
   selectedDate: string | null;
@@ -16,7 +26,9 @@ interface ExamData {
   resultado: string;
 }
 
-const HemogramaContent: React.FC<HemogramaContentProps> = ({ selectedDate }) => {
+const HemogramaContent: React.FC<HemogramaContentProps> = ({
+  selectedDate,
+}) => {
   const [hemoglobinaData, setHemoglobinaData] = useState<ExamData | null>(null);
   const [leucocitosData, setLeucocitosData] = useState<ExamData | null>(null);
   const [plaquetasData, setPlaquetasData] = useState<ExamData | null>(null);
@@ -49,7 +61,9 @@ const HemogramaContent: React.FC<HemogramaContentProps> = ({ selectedDate }) => 
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {hemoglobinaData ? `${hemoglobinaData.valor} ${hemoglobinaData.medida}` : "N/A"}
+              {hemoglobinaData
+                ? `${hemoglobinaData.valor} ${hemoglobinaData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -68,7 +82,9 @@ const HemogramaContent: React.FC<HemogramaContentProps> = ({ selectedDate }) => 
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {leucocitosData ? `${leucocitosData.valor} ${leucocitosData.medida}` : "N/A"}
+              {leucocitosData
+                ? `${leucocitosData.valor} ${leucocitosData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -87,7 +103,9 @@ const HemogramaContent: React.FC<HemogramaContentProps> = ({ selectedDate }) => 
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {plaquetasData ? `${plaquetasData.valor} ${plaquetasData.medida}` : "N/A"}
+              {plaquetasData
+                ? `${plaquetasData.valor} ${plaquetasData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -106,7 +124,9 @@ const HemogramaContent: React.FC<HemogramaContentProps> = ({ selectedDate }) => 
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {eritrocitosData ? `${eritrocitosData.valor} ${eritrocitosData.medida}` : "N/A"}
+              {eritrocitosData
+                ? `${eritrocitosData.valor} ${eritrocitosData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -125,7 +145,9 @@ const HemogramaContent: React.FC<HemogramaContentProps> = ({ selectedDate }) => 
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {eusinofilosData ? `${eusinofilosData.valor} ${eusinofilosData.medida}` : "N/A"}
+              {eusinofilosData
+                ? `${eusinofilosData.valor} ${eusinofilosData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -144,7 +166,9 @@ const HemogramaContent: React.FC<HemogramaContentProps> = ({ selectedDate }) => 
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {hematocritoData ? `${hematocritoData.valor} ${hematocritoData.medida}` : "N/A"}
+              {hematocritoData
+                ? `${hematocritoData.valor} ${hematocritoData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -157,6 +181,14 @@ const HemogramaContent: React.FC<HemogramaContentProps> = ({ selectedDate }) => 
         <section className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
           <CategoryLineChart chart="Hemograma" />
           <HemogramaRadarChart />
+        </section>
+      )}
+
+      {isClient && selectedDate === null && (
+        <section className="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <Indicators groupName="Hemograma" />
+          <IncreaseIndicatorsGraph groupName="Hemograma" />
+          <TreemapGroup groupName={"Hemograma"} />
         </section>
       )}
     </>

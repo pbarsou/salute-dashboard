@@ -30,28 +30,39 @@ interface ChartData {
   fill: string;
 }
 
-const generateColor = (index: number) => {
-  const hue = 30; 
-  const saturation = 100 - index * 10;
-  const lightness = 50 + index * 5; 
-  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+interface IncreaseIndicatorsProps {
+  groupName?: string;
+}
+
+const generateColor = (index: number, groupName?: string) => {
+  if (groupName) {
+    const hue = 340; 
+    const saturation = 60 - index * 5; 
+    const lightness = 40 + index * 5; 
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  } else {
+    const hue = 30;
+    const saturation = 100 - index * 10;
+    const lightness = 50 + index * 5;
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  }
 };
 
-export function IncreaseIndicatorsGraph() {
+export const IncreaseIndicatorsGraph: React.FC<IncreaseIndicatorsProps> = ({ groupName }) => {
   const { theme } = useContext(ThemeContext);
   const [categoriesVariation, setCategoriesVariation] = useState<CategoryVariation[]>([]);
   const [chartData, setChartData] = useState<ChartData[]>([]);
   const [chartConfig, setChartConfig] = useState<ChartConfig>({ categories: { label: "Categories" } });
 
   useEffect(() => {
-    const categoriesVarList = calculateCategoryVariation();
+    const categoriesVarList = calculateCategoryVariation(groupName);
 
     const topCategoriesVarList = categoriesVarList.slice(0, 10);
 
     const newChartData = topCategoriesVarList.map((variation, index) => ({
       category: variation.category,
       visitors: parseFloat(variation.averageDifference.toFixed(2)), // Formatar os valores com duas casas decimais
-      fill: generateColor(index),
+      fill: generateColor(index, groupName),
     }));
 
     const newChartConfig: ChartConfig = {
@@ -61,14 +72,14 @@ export function IncreaseIndicatorsGraph() {
     topCategoriesVarList.forEach((variation, index) => {
       newChartConfig[variation.category] = {
         label: variation.category,
-        color: generateColor(index),
+        color: generateColor(index, groupName),
       };
     });
 
     setCategoriesVariation(topCategoriesVarList);
     setChartData(newChartData);
     setChartConfig(newChartConfig);
-  }, []);
+  }, [groupName]);
 
   return (
     <Card className="h-full pl-2">

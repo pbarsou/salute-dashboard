@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Label, Pie, PieChart, Sector } from "recharts"
 import { PieSectorDataItem } from "recharts/types/polar/Pie"
-import { countResults } from "@/utils/examsDataUtils"
+import { countResults, countResultsByGroup } from "@/utils/examsDataUtils"
 
 import {
   Card,
@@ -27,9 +27,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-const sampleData = [
-  { amostra: "normal", quantidade: countResults("Normal"), fill: "var(--color-normal)" },
-  { amostra: "alterado", quantidade: countResults("Alterado"), fill: "var(--color-alterado)" },]
+
+interface IndicatorsProps {
+  groupName: string;
+}
 
 const chartConfig = {
   amostras: {
@@ -45,7 +46,13 @@ const chartConfig = {
   }
 } satisfies ChartConfig
 
-export function Indicators() {
+export const Indicators: React.FC<IndicatorsProps> = ({ groupName }) => {
+
+  const sampleData = [
+    { amostra: "normal", quantidade: countResultsByGroup(groupName, "Normal"), fill: `${groupName ? "#f4f6f7" : "var(--color-normal)"}` },
+    { amostra: "alterado", quantidade: countResultsByGroup(groupName, "Alterado"), fill: `${groupName ? "var(--color-alterado)" : "var(--color-alterado)"}`},
+  ];
+
   const id = "pie-interactive"
   const [activeSample, setActiveSample] = React.useState(sampleData[0].amostra)
 

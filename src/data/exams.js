@@ -1,4 +1,4 @@
-const data = {
+const treemap_data = {
 
     categories: [
       "Basal",
@@ -65,7 +65,7 @@ const data = {
             ]
         },
         {
-            name: "Vitaminas e Minerais",
+            name: "Minerais e Vitaminas",
             tests: [
                 "Ferro",
                 "Cálcio Total",
@@ -79,6 +79,13 @@ const data = {
                 "Uréia",
                 "Creatinina",
                 "Potássio",
+                "Urina"
+            ],
+        },
+        {
+            name: "Urina",
+            tests: [
+                "Densidade",
                 "pH",
                 "Cor",
                 "Proteína",

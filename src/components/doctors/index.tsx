@@ -26,8 +26,8 @@ export default function Doctors() {
   }, []);
 
   return (
-    <div className="h-full flex">
-      <Card className="flex-1 h-full">
+    <div className="flex">
+      <Card className="flex-1">
         <CardHeader>
           <div className="flex">
             <CardTitle className="text-lg sm:text-2xl">
@@ -43,7 +43,7 @@ export default function Doctors() {
           {mostRecentDoctors.map((doctor, index) => (
             <article
               key={index}
-              className={`flex items-center gap-2 mb-5 ${
+              className={`flex items-center gap-2 ${
                 index !== mostRecentDoctors.length - 1 ? "border-b" : ""
               } py-5`}
             >

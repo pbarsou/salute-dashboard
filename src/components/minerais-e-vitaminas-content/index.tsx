@@ -1,10 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { CategoryLineChart } from "../category-line-chart";
 import { getExamData } from "@/utils/examsDataUtils";
 import { MineraisEVitaminasRadarChart } from "../minerais-e-vitaminas-radar-chart ";
+import { Indicators } from "../result-indicators";
+import { IncreaseIndicatorsGraph } from "../increase-indicators-graph";
+import TreemapGroup from "../treemap";
 
 interface MineraisEVitaminasContentProps {
   selectedDate: string | null;
@@ -16,7 +26,9 @@ interface ExamData {
   resultado: string;
 }
 
-const MineraisEVitaminasContent: React.FC<MineraisEVitaminasContentProps> = ({ selectedDate }) => {
+const MineraisEVitaminasContent: React.FC<MineraisEVitaminasContentProps> = ({
+  selectedDate,
+}) => {
   const [ferroData, setFerroData] = useState<ExamData | null>(null);
   const [calcioData, setCalcioData] = useState<ExamData | null>(null);
   const [vitaminaB12Data, setVitaminaB12Data] = useState<ExamData | null>(null);
@@ -26,9 +38,15 @@ const MineraisEVitaminasContent: React.FC<MineraisEVitaminasContentProps> = ({ s
   useEffect(() => {
     setIsClient(true);
     setFerroData(getExamData("Minerais e Vitaminas", "Ferro", selectedDate));
-    setCalcioData(getExamData("Minerais e Vitaminas", "Cálcio Total", selectedDate));
-    setVitaminaB12Data(getExamData("Minerais e Vitaminas", "Vitamina B12", selectedDate));
-    setVitaminaDData(getExamData("Minerais e Vitaminas", "Vitamina D", selectedDate));
+    setCalcioData(
+      getExamData("Minerais e Vitaminas", "Cálcio Total", selectedDate)
+    );
+    setVitaminaB12Data(
+      getExamData("Minerais e Vitaminas", "Vitamina B12", selectedDate)
+    );
+    setVitaminaDData(
+      getExamData("Minerais e Vitaminas", "Vitamina D", selectedDate)
+    );
   }, [selectedDate]);
 
   return (
@@ -83,7 +101,9 @@ const MineraisEVitaminasContent: React.FC<MineraisEVitaminasContentProps> = ({ s
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {vitaminaB12Data ? `${vitaminaB12Data.valor} ${vitaminaB12Data.medida}` : "N/A"}
+              {vitaminaB12Data
+                ? `${vitaminaB12Data.valor} ${vitaminaB12Data.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -102,7 +122,9 @@ const MineraisEVitaminasContent: React.FC<MineraisEVitaminasContentProps> = ({ s
           </CardHeader>
           <CardContent>
             <p className="text-base sm:text-lg font-bold">
-              {vitaminaDData ? `${vitaminaDData.valor} ${vitaminaDData.medida}` : "N/A"}
+              {vitaminaDData
+                ? `${vitaminaDData.valor} ${vitaminaDData.medida}`
+                : "N/A"}
             </p>
           </CardContent>
           <CardFooter className="flex justify-end">
@@ -115,6 +137,14 @@ const MineraisEVitaminasContent: React.FC<MineraisEVitaminasContentProps> = ({ s
         <section className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
           <CategoryLineChart chart="Minerais e Vitaminas" />
           <MineraisEVitaminasRadarChart />
+        </section>
+      )}
+
+      {isClient && selectedDate === null && (
+        <section className="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <Indicators groupName="Minerais e Vitaminas" />
+          <IncreaseIndicatorsGraph groupName="Minerais e Vitaminas" />
+          <TreemapGroup groupName="Minerais e Vitaminas" />
         </section>
       )}
     </>
