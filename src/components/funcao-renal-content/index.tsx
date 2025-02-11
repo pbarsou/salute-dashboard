@@ -248,20 +248,19 @@ const FuncaoRenalContent: React.FC<FuncaoRenalContentProps> = ({
         <section className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
         <CategoryLineChart chart="Funcao Renal" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <BubbleChart />
-          <TreemapGroup groupName={"Funcao Renal"} />
+        <Indicators groupName="Funcao Renal" />
+         
+          <FuncaoRenalRadarChart />     
         </div>
       </section>
       
       )}
 
       {isClient && selectedDate === null && (
-        <section className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
-          
-          <FuncaoRenalRadarChart />
-          {/* <Indicators groupName="Funcao Renal" /> */}
+        <section className="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <BubbleChart />
+          <TreemapGroup groupName={"Funcao Renal"} />
           <IncreaseIndicatorsGraph groupName="Funcao Renal" />
-         
         </section>
       )}
     </>

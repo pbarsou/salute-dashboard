@@ -114,7 +114,7 @@ export default function Profile() {
               <div className="flex items-center space-x-4 mb-4">
                 <Avatar>
                   <AvatarImage
-                    src="/images/profile_photo.png"
+                    src=""
                     alt="Profile Photo"
                   />
                   <AvatarFallback>U</AvatarFallback>

@@ -34,7 +34,7 @@ const TreemapGroup: React.FC<TreemapGroupProps> = ({ groupName }) => {
           <CardDescription>Histórico de exames</CardDescription>
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="mt-12">
         <ChartContainer config={chartConfig}>
           <Treemap
             width={400}

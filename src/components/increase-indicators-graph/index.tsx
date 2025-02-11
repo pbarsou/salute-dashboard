@@ -84,10 +84,10 @@ export const IncreaseIndicatorsGraph: React.FC<IncreaseIndicatorsProps> = ({ gro
   return (
     <Card className="h-full pl-2">
       <CardHeader className="sm:text-2xl">
-        <CardTitle>Variação (%) por exame</CardTitle>
+        <CardTitle>Variação por exame (%)</CardTitle>
         <CardDescription></CardDescription>
       </CardHeader>
-      <CardContent className="p-7">
+      <CardContent className={`p-7 ${groupName === "Funcao Renal" ? "mt-5" : ""}`}>
         <ChartContainer config={chartConfig}>
           <BarChart
             accessibilityLayer

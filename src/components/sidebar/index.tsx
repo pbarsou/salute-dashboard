@@ -54,11 +54,11 @@ export function Sidebar() {
                   <h1 className="text-2xl font-semibold mb-4">Profile</h1>
                   <div className="flex flex-col items-center mb-6">
                     <Avatar className="w-40 h-40 mb-4">
-                      <AvatarImage src="/images/profile_photo.png" />
+                      <AvatarImage src="" />
                       <AvatarFallback>DV</AvatarFallback>
                     </Avatar>
-                    <h1 className="text-3xl mb-2">Danilo Barbosa</h1>
-                    <h2 className="text-lg text-gray-600">Teacher at UFBA</h2>
+                    <h1 className="text-3xl mb-2">Anonymous</h1>
+                    <h2 className="text-lg text-gray-600">Anonymous</h2>
                   </div>
                   <nav className="flex flex-col items-center gap-2 w-full"> {/* Alterado gap-4 para gap-6 e adicionada a classe w-full */}
                     <Link

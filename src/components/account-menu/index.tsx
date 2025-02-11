@@ -36,7 +36,7 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar src="/images/profile_photo.png" sx={{ width: 32, height: 32 }}></Avatar>
+            <Avatar src="" sx={{ width: 32, height: 32 }}></Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -80,7 +80,7 @@ export default function AccountMenu() {
         <Link href="/profile" passHref>
           <MenuItem onClick={handleClose} component="a">
             <div className="flex items-center">
-              <Avatar src="/images/profile_photo.png" className="mr-2" />
+              <Avatar src="" className="mr-2" />
               Profile
             </div>
           </MenuItem>

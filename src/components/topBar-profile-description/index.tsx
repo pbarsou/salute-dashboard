@@ -33,7 +33,7 @@ export default function TopBarProfileDescription() {
         }`}
       >
         <Avatar className="w-20 h-20 mr-6">
-          <AvatarImage src="/images/profile_photo.png" />
+          <AvatarImage src="" />
           <AvatarFallback>DV</AvatarFallback>
         </Avatar>
         <div className="flex flex-col justify-center space-y-2">
