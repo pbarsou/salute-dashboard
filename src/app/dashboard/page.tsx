@@ -9,6 +9,7 @@ import HemogramaContent from "@/components/hemograma-content";
 import MineraisEVitaminasContent from "@/components/minerais-e-vitaminas-content";
 import FuncaoRenalContent from "@/components/funcao-renal-content";
 import LipidogramaContent from "@/components/lipidograma-content";
+import ThemeMenu from "@/components/theme-menu";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string>("glicose");
@@ -41,7 +42,12 @@ export default function Home() {
         {/* <hr className="w-full border-t border-bg-gray-900 mb-4" /> */}
 
         <div className="pl-4 pr-4 ml-2 mr-2">
-          <h1 className="text-6xl font-semibold ml-2 mt-2 mb-4">Salute Dashboard</h1>
+          <div className='flex justify-between items-center'>
+                      <h1 className="text-6xl font-semibold ml-2 mb-4">Salute Dashboard</h1>
+                      <div className="flex items-end space-x-4 mb-4">
+                        <ThemeMenu />
+                      </div>
+                    </div>
 
           <div className="flex justify-between items-center pt-4">
             <div style={{ maxWidth: "80%" }}>

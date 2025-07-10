@@ -9,6 +9,10 @@ import TopBarProfileDescription from '@/components/topBar-profile-description'
 import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '@/context/ThemeContext'
 import { calculateAverageTimeBetweenConsultations, countAlteredResults, countNonNullResults, countUniqueDataColeta, countUniqueExam, getYearWithMostCollections } from '@/utils/examsDataUtils'
+import ThemeMenu from '@/components/theme-menu'
+import AccountMenu from '@/components/account-menu'
+import Input from '@mui/material/Input'
+import { NavigationMenuTopbar } from '@/components/navigation-menu-topbar'
 
 export default function Dashboard() {
   const { theme } = useContext(ThemeContext);
@@ -41,6 +45,9 @@ export default function Dashboard() {
 
           <div className='flex justify-between items-center'>
             <h1 className="text-6xl font-semibold ml-2 mt-8">Salute Dashboard</h1>
+            <div className="flex items-end space-x-4 mt-8">
+              <ThemeMenu />
+            </div>
           </div>
 
           <TopBarProfileDescription/>
